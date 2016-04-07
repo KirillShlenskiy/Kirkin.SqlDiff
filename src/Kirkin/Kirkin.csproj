@@ -49,6 +49,7 @@
     <Compile Include="Diff\Data\DataTableDiff.cs" />
     <Compile Include="Diff\DiffResult.cs" />
     <Compile Include="Diff\DiffTextFormat.cs" />
+    <Compile Include="Diff\DiffEngine.cs" />
     <Compile Include="Diff\PrimitiveEqualityComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

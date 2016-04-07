@@ -13,9 +13,9 @@ namespace Kirkin.Diff
         /// <summary>
         /// Simle <see cref="DiffResult"/> factory.
         /// </summary>
-        public static DiffResult Create(string name, object x, object y, IEqualityComparer comparer = null)
+        internal static DiffResult Create(string name, object x, object y, IEqualityComparer comparer)
         {
-            return new SimpleDiffResult(name, x, y, comparer ?? PrimitiveEqualityComparer.Instance);
+            return new SimpleDiffResult(name, x, y, comparer);
         }
 
         private static string ToString(object obj)

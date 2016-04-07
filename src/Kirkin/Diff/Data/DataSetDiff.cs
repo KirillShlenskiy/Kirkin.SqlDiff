@@ -1,36 +1,53 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 using Kirkin.Data;
 
 namespace Kirkin.Diff.Data
 {
-    public static class DataSetDiff
+    public sealed class DataSetDiff : DiffEngine<LightDataSet>
     {
-        public static DiffResult Compare(LightDataSet x, LightDataSet y)
+        /// <summary>
+        /// Default diff engine instance.
+        /// </summary>
+        internal static DataSetDiff Default { get; } = new DataSetDiff();
+
+        /// <summary>
+        /// Compares two datasets using the given comparer and returns their diff.
+        /// </summary>
+        public static DiffResult Compare(LightDataSet x, LightDataSet y, IEqualityComparer comparer = null)
         {
-            return Compare("DataSet", x, y);
+            if (x == null) throw new ArgumentNullException(nameof(x));
+            if (y == null) throw new ArgumentNullException(nameof(y));
+
+            return Default.Compare("DataSet", x, y, comparer ?? PrimitiveEqualityComparer.Instance);
         }
 
-        internal static DiffResult Compare(string name, LightDataSet x, LightDataSet y)
+        private DataSetDiff()
+        {
+        }
+
+        protected internal override DiffResult Compare(string name, LightDataSet x, LightDataSet y, IEqualityComparer comparer)
         {
             List<DiffResult> entries = new List<DiffResult>();
-            DiffResult tableCount = DiffResult.Create("Table count", x.Tables.Count, y.Tables.Count);
+            DiffResult tableCount = DiffResult.Create("Table count", x.Tables.Count, y.Tables.Count, comparer);
 
             entries.Add(tableCount);
 
             if (tableCount.AreSame) {
-                entries.Add(new DiffResult("Tables", GetTableDiffs(x, y)));
+                entries.Add(new DiffResult("Tables", GetTableDiffs(x, y, comparer)));
             }
 
             return new DiffResult(name, entries.ToArray());
         }
 
-        private static DiffResult[] GetTableDiffs(LightDataSet x, LightDataSet y)
+        private static DiffResult[] GetTableDiffs(LightDataSet x, LightDataSet y, IEqualityComparer comparer)
         {
             DiffResult[] entries = new DiffResult[x.Tables.Count];
 
             for (int i = 0; i < x.Tables.Count; i++) {
-                entries[i] = DataTableDiff.Compare($"Table {i}", x.Tables[i], y.Tables[i]);
+                entries[i] = DataTableDiff.Default.Compare($"Table {i}", x.Tables[i], y.Tables[i], comparer);
             }
 
             return entries;
