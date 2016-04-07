@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kirkin.SqlDiff", "Kirkin.Sq
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kirkin", "Kirkin\Kirkin.csproj", "{B4BED42D-9AC1-4EEF-ADEF-19FFCCF8133B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kirkin.SqlDiff.Tests", "Kirkin.SqlDiff.Tests\Kirkin.SqlDiff.Tests.csproj", "{46833D33-4ECA-49CF-A2EB-EEF39C1EC249}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B4BED42D-9AC1-4EEF-ADEF-19FFCCF8133B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4BED42D-9AC1-4EEF-ADEF-19FFCCF8133B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4BED42D-9AC1-4EEF-ADEF-19FFCCF8133B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46833D33-4ECA-49CF-A2EB-EEF39C1EC249}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46833D33-4ECA-49CF-A2EB-EEF39C1EC249}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46833D33-4ECA-49CF-A2EB-EEF39C1EC249}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46833D33-4ECA-49CF-A2EB-EEF39C1EC249}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
