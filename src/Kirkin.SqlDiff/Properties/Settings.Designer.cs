@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KirkinDiff.Properties {
+namespace Kirkin.SqlDiff.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

@@ -11,9 +11,9 @@ using Kirkin.Data;
 using Kirkin.Diff;
 using Kirkin.Diff.Data;
 
-using KirkinDiff.Properties;
+using Kirkin.SqlDiff.Properties;
 
-namespace KirkinDiff
+namespace Kirkin.SqlDiff
 {
     public partial class MainForm : Form
     {

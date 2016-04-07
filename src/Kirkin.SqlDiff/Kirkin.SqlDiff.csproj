@@ -7,8 +7,8 @@
     <ProjectGuid>{BC4FCC6F-259B-4D0A-BE96-00810C8D8F82}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KirkinDiff</RootNamespace>
-    <AssemblyName>KirkinDiff</AssemblyName>
+    <RootNamespace>Kirkin.SqlDiff</RootNamespace>
+    <AssemblyName>SqlDiff</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -74,6 +74,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace KirkinDiff
+namespace Kirkin.SqlDiff
 {
     static class Program
     {
