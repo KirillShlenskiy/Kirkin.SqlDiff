@@ -6,12 +6,12 @@ using Kirkin.Data;
 
 namespace Kirkin.Diff.Data
 {
-    public sealed class DataSetDiff : DiffEngine<LightDataSet>
+    public sealed class LightDataSetDiff : DiffEngine<LightDataSet>
     {
         /// <summary>
         /// Default diff engine instance.
         /// </summary>
-        internal static DataSetDiff Default { get; } = new DataSetDiff();
+        internal static LightDataSetDiff Default { get; } = new LightDataSetDiff();
 
         /// <summary>
         /// Compares two datasets using the given comparer and returns their diff.
@@ -24,7 +24,7 @@ namespace Kirkin.Diff.Data
             return Default.Compare("DataSet", x, y, comparer ?? PrimitiveEqualityComparer.Instance);
         }
 
-        private DataSetDiff()
+        private LightDataSetDiff()
         {
         }
 
@@ -47,7 +47,7 @@ namespace Kirkin.Diff.Data
             DiffResult[] entries = new DiffResult[x.Tables.Count];
 
             for (int i = 0; i < x.Tables.Count; i++) {
-                entries[i] = DataTableDiff.Default.Compare($"Table {i}", x.Tables[i], y.Tables[i], comparer);
+                entries[i] = LightDataTableDiff.Default.Compare($"Table {i}", x.Tables[i], y.Tables[i], comparer);
             }
 
             return entries;

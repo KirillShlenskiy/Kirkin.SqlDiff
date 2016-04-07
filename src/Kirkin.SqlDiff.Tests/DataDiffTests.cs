@@ -22,7 +22,7 @@ namespace Kirkin.Tests.Diff
             LightDataTable dt1 = new LightDataTable();
             LightDataTable dt2 = new LightDataTable();
 
-            Assert.True(DataTableDiff.Compare(dt1, dt2).AreSame);
+            Assert.True(LightDataTableDiff.Compare(dt1, dt2).AreSame);
         }
 
         [Fact]
@@ -34,7 +34,7 @@ namespace Kirkin.Tests.Diff
             dt1.Columns.Add("ID", typeof(int));
             dt2.Columns.Add("ID", typeof(int));
 
-            Assert.True(DataTableDiff.Compare(dt1, dt2).AreSame);
+            Assert.True(LightDataTableDiff.Compare(dt1, dt2).AreSame);
         }
 
         [Fact]
@@ -45,7 +45,7 @@ namespace Kirkin.Tests.Diff
 
             dt1.Columns.Add("ID", typeof(int));
 
-            Assert.False(DataTableDiff.Compare(dt1, dt2).AreSame);
+            Assert.False(LightDataTableDiff.Compare(dt1, dt2).AreSame);
         }
 
         [Fact]
@@ -57,7 +57,7 @@ namespace Kirkin.Tests.Diff
             dt1.Columns.Add("ID", typeof(int));
             dt2.Columns.Add("IDz", typeof(int));
 
-            DiffResult diff = DataTableDiff.Compare(dt1, dt2);
+            DiffResult diff = LightDataTableDiff.Compare(dt1, dt2);
 
             Assert.False(diff.AreSame);
 
@@ -73,7 +73,7 @@ namespace Kirkin.Tests.Diff
             dt1.Columns.Add("ID", typeof(int));
             dt2.Columns.Add("ID", typeof(string));
 
-            DiffResult diff = DataTableDiff.Compare(dt1, dt2);
+            DiffResult diff = LightDataTableDiff.Compare(dt1, dt2);
 
             Assert.False(diff.AreSame);
 
@@ -96,18 +96,18 @@ namespace Kirkin.Tests.Diff
             dt1.Rows.Add(2, "Moshi Moshi");
             dt2.Rows.Add(2, "Moshi Moshi");
 
-            Assert.True(DataTableDiff.Compare(dt1, dt2).AreSame);
+            Assert.True(LightDataTableDiff.Compare(dt1, dt2).AreSame);
 
             dt1.Rows.Add(3, "Aloha");
 
-            DiffResult diff1 = DataTableDiff.Compare(dt1, dt2);
+            DiffResult diff1 = LightDataTableDiff.Compare(dt1, dt2);
 
             Assert.False(diff1.AreSame);
             Assert.Equal("DataTable -> Row count: 3 | 2", diff1.ToString());
 
             dt2.Rows.Add(4, "Whaaaa");
 
-            DiffResult diff2 = DataTableDiff.Compare(dt1, dt2);
+            DiffResult diff2 = LightDataTableDiff.Compare(dt1, dt2);
             string message = diff2.ToString();
 
             Assert.False(diff2.AreSame);

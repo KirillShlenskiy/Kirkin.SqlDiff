@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace Kirkin.Diff
 {
@@ -8,7 +7,7 @@ namespace Kirkin.Diff
     /// Default equality comparer used by diff engines.
     /// </summary>
     internal sealed class PrimitiveEqualityComparer
-        : IEqualityComparer, IEqualityComparer<object>
+        : IEqualityComparer
     {
         /// <summary>
         /// Singleton <see cref="PrimitiveEqualityComparer"/> instance.

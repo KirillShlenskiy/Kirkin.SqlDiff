@@ -109,7 +109,7 @@ namespace Kirkin.SqlDiff
 
                 Text = DefaultText + ": comparing ...";
                 Stopwatch diffStopwatch = Stopwatch.StartNew();
-                DiffResult diff = await Task.Run(() => DataSetDiff.Compare(ds1, ds2));
+                DiffResult diff = await Task.Run(() => LightDataSetDiff.Compare(ds1, ds2));
 
                 cts.Token.ThrowIfCancellationRequested();
                 diffStopwatch.Stop();

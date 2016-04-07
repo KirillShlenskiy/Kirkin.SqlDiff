@@ -5,14 +5,14 @@ using Kirkin.Data;
 
 namespace Kirkin.Diff.Data
 {
-    internal sealed class DataRowDiff : DiffEngine<LightDataRow>
+    internal sealed class LightDataRowDiff : DiffEngine<LightDataRow>
     {
         /// <summary>
         /// Default diff engine instance.
         /// </summary>
-        internal static DataRowDiff Default { get; } = new DataRowDiff();
+        internal static LightDataRowDiff Default { get; } = new LightDataRowDiff();
 
-        private DataRowDiff()
+        private LightDataRowDiff()
         {
         }
 

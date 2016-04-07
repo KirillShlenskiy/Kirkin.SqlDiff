@@ -7,12 +7,12 @@ using Kirkin.Data;
 
 namespace Kirkin.Diff.Data
 {
-    public sealed class DataTableDiff : DiffEngine<LightDataTable>
+    public sealed class LightDataTableDiff : DiffEngine<LightDataTable>
     {
         /// <summary>
         /// Default diff engine instance.
         /// </summary>
-        internal static DataTableDiff Default { get; } = new DataTableDiff();
+        internal static LightDataTableDiff Default { get; } = new LightDataTableDiff();
 
         /// <summary>
         /// Compares two data tables using the given comparer and returns their diff.
@@ -75,7 +75,7 @@ namespace Kirkin.Diff.Data
         {
             DiffResult[] results = new DiffResult[x.Rows.Count];
 
-            Parallel.For(0, x.Rows.Count, i => results[i] = DataRowDiff.Default.Compare($"Row {i}", x.Rows[i], y.Rows[i], comparer));
+            Parallel.For(0, x.Rows.Count, i => results[i] = LightDataRowDiff.Default.Compare($"Row {i}", x.Rows[i], y.Rows[i], comparer));
 
             return results;
         }
