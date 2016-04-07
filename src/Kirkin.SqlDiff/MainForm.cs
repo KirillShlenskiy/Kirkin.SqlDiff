@@ -17,17 +17,17 @@ namespace Kirkin.SqlDiff
 {
     public partial class MainForm : Form
     {
-        private string DefaultText;
+        private readonly string DefaultText;
 
         public MainForm()
         {
             InitializeComponent();
+
+            DefaultText = Text;
         }
 
         private async void MainForm_Load(object sender, EventArgs _)
         {
-            DefaultText = Text;
-
             ConnectionStringTextBox1.Text = Settings.Default.ConnectionString1;
             ConnectionStringTextBox2.Text = Settings.Default.ConnectionString2;
 
@@ -36,7 +36,12 @@ namespace Kirkin.SqlDiff
 
             KeyPreview = true;
 
-            KeyDown += OnKeyDown;
+            KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.F5) {
+                    ExecuteDiff();
+                }
+            };
 
             await Task.Yield();
 
@@ -65,13 +70,6 @@ namespace Kirkin.SqlDiff
             }
         }
 
-        private void OnKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F5) {
-                ExecuteDiff();
-            }
-        }
-
         private async void ExecuteDiff()
         {
             if (string.IsNullOrEmpty(ConnectionStringTextBox1.Text) || string.IsNullOrEmpty(ConnectionStringTextBox2.Text))
@@ -86,33 +84,33 @@ namespace Kirkin.SqlDiff
                 return;
             }
 
-            CancellationTokenSource cts = new CancellationTokenSource();
+            CancellationTokenSource cancellation = new CancellationTokenSource();
 
-            ExecuteButton.Tag = cts;
+            ExecuteButton.Tag = cancellation;
             ExecuteButton.Text = "Cancel";
 
             try
             {
                 Text = DefaultText + ": executing left ...";
                 Stopwatch ds1Stopwatch = Stopwatch.StartNew();
-                LightDataSet ds1 = await ProduceDataSetAsync(ConnectionStringTextBox1.Text, CommandTextTextBox1.Text, cts.Token);
+                LightDataSet ds1 = await ProduceDataSetAsync(ConnectionStringTextBox1.Text, CommandTextTextBox1.Text, cancellation.Token);
 
                 ds1Stopwatch.Stop();
-                cts.Token.ThrowIfCancellationRequested();
+                cancellation.Token.ThrowIfCancellationRequested();
 
                 Text = DefaultText + ": executing right ...";
                 Stopwatch ds2Stopwatch = Stopwatch.StartNew();
-                LightDataSet ds2 = await ProduceDataSetAsync(ConnectionStringTextBox2.Text, CommandTextTextBox2.Text, cts.Token);
+                LightDataSet ds2 = await ProduceDataSetAsync(ConnectionStringTextBox2.Text, CommandTextTextBox2.Text, cancellation.Token);
 
                 ds2Stopwatch.Stop();
-                cts.Token.ThrowIfCancellationRequested();
+                cancellation.Token.ThrowIfCancellationRequested();
 
                 Text = DefaultText + ": comparing ...";
                 Stopwatch diffStopwatch = Stopwatch.StartNew();
                 DiffResult diff = await Task.Run(() => LightDataSetDiff.Compare(ds1, ds2));
 
-                cts.Token.ThrowIfCancellationRequested();
                 diffStopwatch.Stop();
+                cancellation.Token.ThrowIfCancellationRequested();
 
                 StringBuilder resultText = new StringBuilder();
 
