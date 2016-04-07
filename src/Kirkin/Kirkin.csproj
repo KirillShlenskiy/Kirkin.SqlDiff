@@ -40,10 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\LightDataColumn.cs" />
+    <Compile Include="Data\LightDataRow.cs" />
+    <Compile Include="Data\LightDataSet.cs" />
+    <Compile Include="Data\LightDataTable.cs" />
     <Compile Include="Diff\Data\DataRowDiff.cs" />
     <Compile Include="Diff\Data\DataSetDiff.cs" />
     <Compile Include="Diff\Data\DataTableDiff.cs" />
-    <Compile Include="Data\LightDataObjects.cs" />
     <Compile Include="Diff\DiffResult.cs" />
     <Compile Include="Diff\DiffTextFormat.cs" />
     <Compile Include="Diff\PrimitiveEqualityComparer.cs" />

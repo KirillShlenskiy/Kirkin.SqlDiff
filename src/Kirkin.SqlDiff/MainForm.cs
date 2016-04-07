@@ -127,7 +127,7 @@ namespace Kirkin.SqlDiff
                 }
                 else
                 {
-                    resultText.AppendLine(diff.ToString(DiffTextFormat.Indented));
+                    resultText.AppendLine(diff.ToString(DiffTextFormat.Tree));
                 }
 
                 if (resultText.Length > 1500)

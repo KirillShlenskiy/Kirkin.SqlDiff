@@ -61,7 +61,7 @@ namespace Kirkin.Tests.Diff
 
             Assert.False(diff.AreSame);
 
-            Output.WriteLine(diff.ToString(DiffTextFormat.Flat));
+            Output.WriteLine(diff.ToString(DiffTextFormat.List));
         }
 
         [Fact]
@@ -77,7 +77,7 @@ namespace Kirkin.Tests.Diff
 
             Assert.False(diff.AreSame);
 
-            Output.WriteLine(diff.ToString(DiffTextFormat.Flat));
+            Output.WriteLine(diff.ToString(DiffTextFormat.List));
         }
 
         [Fact]
@@ -113,7 +113,7 @@ namespace Kirkin.Tests.Diff
             Assert.False(diff2.AreSame);
             //Assert.Equal("Row count mismatch: 3 vs 2.", diff.Message);
 
-            Output.WriteLine(diff2.ToString(DiffTextFormat.Indented));
+            Output.WriteLine(diff2.ToString(DiffTextFormat.Tree));
         }
     }
 }

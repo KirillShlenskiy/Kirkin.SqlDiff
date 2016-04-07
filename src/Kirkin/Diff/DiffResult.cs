@@ -103,13 +103,13 @@ namespace Kirkin.Diff
 
         public override string ToString()
         {
-            return ToString(DiffTextFormat.Flat);
+            return ToString(DiffTextFormat.List);
         }
 
         public string ToString(DiffTextFormat format)
         {
-            if (format == DiffTextFormat.Flat) return DiffDescriptionBuilder.BuildFlatDiffMessage(this);
-            if (format == DiffTextFormat.Indented) return DiffDescriptionBuilder.BuildIndentedDiffMessage(this);
+            if (format == DiffTextFormat.List) return DiffDescriptionBuilder.BuildFlatDiffMessage(this);
+            if (format == DiffTextFormat.Tree) return DiffDescriptionBuilder.BuildIndentedDiffMessage(this);
 
             throw new NotImplementedException($"Unknown {nameof(DiffTextFormat)} value.");
         }
