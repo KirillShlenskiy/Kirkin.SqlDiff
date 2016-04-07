@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace Kirkin.SqlDiff
         {
             InitializeComponent();
 
+            Text += $" ({Assembly.GetExecutingAssembly().GetName().Version})";
             DefaultText = Text;
         }
 
