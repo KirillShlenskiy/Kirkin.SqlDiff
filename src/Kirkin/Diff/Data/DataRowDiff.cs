@@ -8,7 +8,7 @@ namespace Kirkin.Diff.Data
     {
         internal static DiffResult Compare(string name, LightDataRow x, LightDataRow y)
         {
-            return new DiffResult("Cells", GetCellDiffs(x, y));
+            return new DiffResult(name, GetCellDiffs(x, y));
         }
 
         private static DiffResult[] GetCellDiffs(LightDataRow x, LightDataRow y)
