@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Kirkin.Data;
+using Kirkin.Diff.DiffResults;
 
 namespace Kirkin.Diff.Data
 {
@@ -31,7 +32,7 @@ namespace Kirkin.Diff.Data
         protected internal override DiffResult Compare(string name, LightDataSet x, LightDataSet y, IEqualityComparer comparer)
         {
             List<DiffResult> entries = new List<DiffResult>();
-            DiffResult tableCount = DiffResult.Create("Table count", x.Tables.Count, y.Tables.Count, comparer);
+            DiffResult tableCount = new SimpleDiffResult("Table count", x.Tables.Count, y.Tables.Count, comparer);
 
             entries.Add(tableCount);
 

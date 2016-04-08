@@ -25,7 +25,7 @@ namespace Kirkin.SqlDiff.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=Server; Initial Catalog=Database; Integrated Security=True;")]
         public string ConnectionString1 {
             get {
                 return ((string)(this["ConnectionString1"]));
@@ -37,7 +37,7 @@ namespace Kirkin.SqlDiff.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=Server; Initial Catalog=Database; Integrated Security=True;")]
         public string ConnectionString2 {
             get {
                 return ((string)(this["ConnectionString2"]));

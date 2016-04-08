@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="ConnectionString1" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Data Source=Server; Initial Catalog=Database; Integrated Security=True;</Value>
     </Setting>
     <Setting Name="ConnectionString2" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Data Source=Server; Initial Catalog=Database; Integrated Security=True;</Value>
     </Setting>
   </Settings>
 </SettingsFile>

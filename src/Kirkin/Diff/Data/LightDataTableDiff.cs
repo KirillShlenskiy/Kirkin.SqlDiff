@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Kirkin.Data;
+using Kirkin.Diff.DiffResults;
 
 namespace Kirkin.Diff.Data
 {
@@ -29,21 +30,15 @@ namespace Kirkin.Diff.Data
         protected internal override DiffResult Compare(string name, LightDataTable x, LightDataTable y, IEqualityComparer comparer)
         {
             List<DiffResult> entries = new List<DiffResult>();
-            DiffResult columnCount = DiffResult.Create("Column count", x.Columns.Count, y.Columns.Count, comparer);
+            DiffResult columns = new DiffResult("Columns", GetColumnDiffs(x, y, comparer));
 
-            entries.Add(columnCount);
+            entries.Add(columns);
 
-            if (columnCount.AreSame)
-            {
-                entries.Add(new DiffResult("Column names", GetColumnNameDiffs(x, y, comparer)));
-                entries.Add(new DiffResult("Column types", GetColumnDataTypeDiffs(x, y, comparer)));
-            }
-
-            DiffResult rowCount = DiffResult.Create("Row count", x.Rows.Count, y.Rows.Count, comparer);
+            DiffResult rowCount = new SimpleDiffResult("Row count", x.Rows.Count, y.Rows.Count, comparer);
 
             entries.Add(rowCount);
 
-            if (columnCount.AreSame && rowCount.AreSame) {
+            if (columns.AreSame && rowCount.AreSame) {
                 entries.Add(new DiffResult("Rows", GetRowDiffs(x, y, comparer)));
             }
 
@@ -52,41 +47,29 @@ namespace Kirkin.Diff.Data
 
         private static DiffResult[] GetColumnDiffs(LightDataTable x, LightDataTable y, IEqualityComparer comparer)
         {
-            throw new NotImplementedException();
-
             List<DiffResult> entries = new List<DiffResult>();
 
             for (int i = 0; i < Math.Max(x.Columns.Count, y.Columns.Count); i++)
             {
                 LightDataColumn xCol = x.Columns.ElementAtOrDefault(i);
-                LightDataColumn yCol = x.Columns.ElementAtOrDefault(i);
+                LightDataColumn yCol = y.Columns.ElementAtOrDefault(i);
 
-                if (xCol == null ^ yCol == null)
+                if (xCol == null)
                 {
+                    entries.Add(new CustomDiffResult($"Column[{i}] ({yCol.ColumnName}: {yCol.DataType.Name})", false, "Only exists on the right."));
+                }
+                else if (yCol == null)
+                {
+                    entries.Add(new CustomDiffResult($"Column[{i}] ({xCol.ColumnName}: {xCol.DataType.Name})", false, "Only exists on the left."));
+                }
+                else
+                {
+                    entries.Add(new SimpleDiffResult($"Column[{i}] name", xCol.ColumnName, yCol.ColumnName, comparer));
+                    entries.Add(new SimpleDiffResult($"Column[{i}] type", xCol.DataType, yCol.DataType, comparer));
                 }
             }
-        }
 
-        private static DiffResult[] GetColumnNameDiffs(LightDataTable x, LightDataTable y, IEqualityComparer comparer)
-        {
-            DiffResult[] entries = new DiffResult[x.Columns.Count];
-
-            for (int i = 0; i < x.Columns.Count; i++) {
-                entries[i] = DiffResult.Create($"Column {i}", x.Columns[i].ColumnName, y.Columns[i].ColumnName, comparer);
-            }
-
-            return entries;
-        }
-
-        private static DiffResult[] GetColumnDataTypeDiffs(LightDataTable x, LightDataTable y, IEqualityComparer comparer)
-        {
-            DiffResult[] entries = new DiffResult[x.Columns.Count];
-
-            for (int i = 0; i < x.Columns.Count; i++) {
-                entries[i] = DiffResult.Create($"Column {i}", x.Columns[i].DataType, y.Columns[i].DataType, comparer);
-            }
-
-            return entries;
+            return entries.ToArray();
         }
 
         private static DiffResult[] GetRowDiffs(LightDataTable x, LightDataTable y, IEqualityComparer comparer)

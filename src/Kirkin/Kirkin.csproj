@@ -48,8 +48,11 @@
     <Compile Include="Diff\Data\LightDataSetDiff.cs" />
     <Compile Include="Diff\Data\LightDataTableDiff.cs" />
     <Compile Include="Diff\DiffResult.cs" />
+    <Compile Include="Diff\DiffResults\CustomDiffResult.cs" />
+    <Compile Include="Diff\DiffResults\SimpleDiffResult.cs" />
     <Compile Include="Diff\DiffTextFormat.cs" />
     <Compile Include="Diff\DiffEngine.cs" />
+    <Compile Include="Diff\DiffResults\DiffTextUtil.cs" />
     <Compile Include="Diff\PrimitiveEqualityComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

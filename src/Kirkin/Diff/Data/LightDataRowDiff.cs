@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Kirkin.Data;
+using Kirkin.Diff.DiffResults;
 
 namespace Kirkin.Diff.Data
 {
@@ -35,7 +36,7 @@ namespace Kirkin.Diff.Data
                 {
                     if (entries == null) entries = new List<DiffResult>();
 
-                    entries.Add(DiffResult.Create(x.Table.Columns[i].ColumnName, xItemArray[i], yItemArray[i], comparer));
+                    entries.Add(new SimpleDiffResult(x.Table.Columns[i].ColumnName, xItemArray[i], yItemArray[i], comparer));
                 }
             }
 
