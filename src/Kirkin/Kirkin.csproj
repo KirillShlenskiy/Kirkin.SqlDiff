@@ -40,13 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\LightDataColumn.cs" />
-    <Compile Include="Data\LightDataRow.cs" />
-    <Compile Include="Data\LightDataSet.cs" />
-    <Compile Include="Data\LightDataTable.cs" />
-    <Compile Include="Diff\Data\LightDataRowDiff.cs" />
-    <Compile Include="Diff\Data\LightDataSetDiff.cs" />
-    <Compile Include="Diff\Data\LightDataTableDiff.cs" />
+    <Compile Include="Data\DataColumnLite.cs" />
+    <Compile Include="Data\DataRowLite.cs" />
+    <Compile Include="Data\DataSetLite.cs" />
+    <Compile Include="Data\DataTableLite.cs" />
+    <Compile Include="Diff\Data\DataRowLiteDiff.cs" />
+    <Compile Include="Diff\Data\DataSetLiteDiff.cs" />
+    <Compile Include="Diff\Data\DataTableLiteDiff.cs" />
     <Compile Include="Diff\DiffResult.cs" />
     <Compile Include="Diff\DiffResults\CustomDiffResult.cs" />
     <Compile Include="Diff\DiffResults\SimpleDiffResult.cs" />

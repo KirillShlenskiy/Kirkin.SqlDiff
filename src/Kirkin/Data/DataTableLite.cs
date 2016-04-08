@@ -6,39 +6,39 @@ namespace Kirkin.Data
     /// <summary>
     /// Lightweight DataColumn-like data structure.
     /// </summary>
-    public sealed class LightDataTable
+    public sealed class DataTableLite
     {
         /// <summary>
         /// Collection of column definitions in this table.
         /// </summary>
-        public LightDataColumnCollection Columns { get; }
+        public DataColumnLiteCollection Columns { get; }
 
         /// <summary>
         /// Collection of rows that belong to this table.
         /// </summary>
-        public LightDataRowCollection Rows { get; }
+        public DataRowLiteCollection Rows { get; }
 
         /// <summary>
-        /// Creates a new <see cref="LightDataTable"/> instance.
+        /// Creates a new <see cref="DataTableLite"/> instance.
         /// </summary>
-        public LightDataTable()
+        public DataTableLite()
         {
-            Columns = new LightDataColumnCollection();
-            Rows = new LightDataRowCollection(this);
+            Columns = new DataColumnLiteCollection();
+            Rows = new DataRowLiteCollection(this);
         }
 
-        public sealed class LightDataColumnCollection : List<LightDataColumn>
+        public sealed class DataColumnLiteCollection : List<DataColumnLite>
         {
-            internal LightDataColumnCollection()
+            internal DataColumnLiteCollection()
             {
             }
 
             /// <summary>
             /// Creates a new column with the given name and data type, and adds it to the table.
             /// </summary>
-            public LightDataColumn Add(string name, Type dataType)
+            public DataColumnLite Add(string name, Type dataType)
             {
-                LightDataColumn column = new LightDataColumn(name, dataType);
+                DataColumnLite column = new DataColumnLite(name, dataType);
 
                 Add(column);
 
@@ -46,11 +46,11 @@ namespace Kirkin.Data
             }
         }
 
-        public sealed class LightDataRowCollection : List<LightDataRow>
+        public sealed class DataRowLiteCollection : List<DataRowLite>
         {
-            private readonly LightDataTable Table;
+            private readonly DataTableLite Table;
 
-            internal LightDataRowCollection(LightDataTable table)
+            internal DataRowLiteCollection(DataTableLite table)
             {
                 Table = table;
             }
@@ -58,11 +58,11 @@ namespace Kirkin.Data
             /// <summary>
             /// Creates a new row from the given item array and adds it to the table.
             /// </summary>
-            public LightDataRow Add(params object[] itemArray)
+            public DataRowLite Add(params object[] itemArray)
             {
                 if (itemArray == null) throw new ArgumentNullException(nameof(itemArray));
 
-                LightDataRow row = new LightDataRow(Table, itemArray);
+                DataRowLite row = new DataRowLite(Table, itemArray);
 
                 base.Add(row);
 

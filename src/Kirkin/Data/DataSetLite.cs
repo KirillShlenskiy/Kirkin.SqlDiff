@@ -5,11 +5,11 @@ namespace Kirkin.Data
     /// <summary>
     /// Lightweight DataSet-like data structure.
     /// </summary>
-    public sealed class LightDataSet
+    public sealed class DataSetLite
     {
         /// <summary>
         /// Collection of tables that belong to this dataset.
         /// </summary>
-        public List<LightDataTable> Tables { get; } = new List<LightDataTable>();
+        public List<DataTableLite> Tables { get; } = new List<DataTableLite>();
     }
 }

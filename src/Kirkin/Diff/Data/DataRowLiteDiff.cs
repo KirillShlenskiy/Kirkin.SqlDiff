@@ -6,23 +6,23 @@ using Kirkin.Diff.DiffResults;
 
 namespace Kirkin.Diff.Data
 {
-    internal sealed class LightDataRowDiff : DiffEngine<LightDataRow>
+    internal sealed class DataRowLiteDiff : DiffEngine<DataRowLite>
     {
         /// <summary>
         /// Default diff engine instance.
         /// </summary>
-        internal static LightDataRowDiff Default { get; } = new LightDataRowDiff();
+        internal static DataRowLiteDiff Default { get; } = new DataRowLiteDiff();
 
-        private LightDataRowDiff()
+        private DataRowLiteDiff()
         {
         }
 
-        protected internal override DiffResult Compare(string name, LightDataRow x, LightDataRow y, IEqualityComparer comparer)
+        protected internal override DiffResult Compare(string name, DataRowLite x, DataRowLite y, IEqualityComparer comparer)
         {
             return new DiffResult(name, GetCellDiffs(x, y, comparer));
         }
 
-        private static DiffResult[] GetCellDiffs(LightDataRow x, LightDataRow y, IEqualityComparer comparer)
+        private static DiffResult[] GetCellDiffs(DataRowLite x, DataRowLite y, IEqualityComparer comparer)
         {
             List<DiffResult> entries = null;
 

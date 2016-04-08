@@ -5,7 +5,7 @@ namespace Kirkin.Data
     /// <summary>
     /// Lightweight DataColumn-like data structure.
     /// </summary>
-    public sealed class LightDataColumn
+    public sealed class DataColumnLite
     {
         /// <summary>
         /// Name of the column. Cannot be null.
@@ -18,9 +18,9 @@ namespace Kirkin.Data
         public Type DataType { get; }
 
         /// <summary>
-        /// Creates a new <see cref="LightDataColumn"/> instance.
+        /// Creates a new <see cref="DataColumnLite"/> instance.
         /// </summary>
-        public LightDataColumn(string name, Type dataType)
+        public DataColumnLite(string name, Type dataType)
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
             if (dataType == null) throw new ArgumentNullException(nameof(dataType));

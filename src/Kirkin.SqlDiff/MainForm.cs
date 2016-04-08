@@ -95,21 +95,21 @@ namespace Kirkin.SqlDiff
             {
                 Text = DefaultText + ": executing left ...";
                 Stopwatch ds1Stopwatch = Stopwatch.StartNew();
-                LightDataSet ds1 = await ProduceDataSetAsync(ConnectionStringTextBox1.Text, CommandTextTextBox1.Text, cancellation.Token);
+                DataSetLite ds1 = await ProduceDataSetAsync(ConnectionStringTextBox1.Text, CommandTextTextBox1.Text, cancellation.Token);
 
                 ds1Stopwatch.Stop();
                 cancellation.Token.ThrowIfCancellationRequested();
 
                 Text = DefaultText + ": executing right ...";
                 Stopwatch ds2Stopwatch = Stopwatch.StartNew();
-                LightDataSet ds2 = await ProduceDataSetAsync(ConnectionStringTextBox2.Text, CommandTextTextBox2.Text, cancellation.Token);
+                DataSetLite ds2 = await ProduceDataSetAsync(ConnectionStringTextBox2.Text, CommandTextTextBox2.Text, cancellation.Token);
 
                 ds2Stopwatch.Stop();
                 cancellation.Token.ThrowIfCancellationRequested();
 
                 Text = DefaultText + ": comparing ...";
                 Stopwatch diffStopwatch = Stopwatch.StartNew();
-                DiffResult diff = await Task.Run(() => LightDataSetDiff.Compare(ds1, ds2));
+                DiffResult diff = await Task.Run(() => DataSetLiteDiff.Compare(ds1, ds2));
 
                 diffStopwatch.Stop();
                 cancellation.Token.ThrowIfCancellationRequested();
@@ -159,7 +159,7 @@ namespace Kirkin.SqlDiff
             }
         }
 
-        private static async Task<LightDataSet> ProduceDataSetAsync(string connectionString, string commandText, CancellationToken ct)
+        private static async Task<DataSetLite> ProduceDataSetAsync(string connectionString, string commandText, CancellationToken ct)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -171,7 +171,7 @@ namespace Kirkin.SqlDiff
 
                     using (SqlDataReader reader = await command.ExecuteReaderAsync(ct).ConfigureAwait(false))
                     {
-                        LightDataSet ds = new LightDataSet();
+                        DataSetLite ds = new DataSetLite();
 
                         while (true)
                         {
@@ -188,9 +188,9 @@ namespace Kirkin.SqlDiff
             }
         }
 
-        private static async Task<LightDataTable> TableFromReaderAsync(SqlDataReader reader, CancellationToken ct)
+        private static async Task<DataTableLite> TableFromReaderAsync(SqlDataReader reader, CancellationToken ct)
         {
-            LightDataTable table = new LightDataTable();
+            DataTableLite table = new DataTableLite();
 
             for (int i = 0; i < reader.FieldCount; i++) {
                 table.Columns.Add(reader.GetName(i), reader.GetFieldType(i));

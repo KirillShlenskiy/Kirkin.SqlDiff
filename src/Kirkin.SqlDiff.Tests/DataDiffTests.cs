@@ -19,45 +19,45 @@ namespace Kirkin.Tests.Diff
         [Fact]
         public void EmptyTableDiff()
         {
-            LightDataTable dt1 = new LightDataTable();
-            LightDataTable dt2 = new LightDataTable();
+            DataTableLite dt1 = new DataTableLite();
+            DataTableLite dt2 = new DataTableLite();
 
-            Assert.True(LightDataTableDiff.Compare(dt1, dt2).AreSame);
+            Assert.True(DataTableLiteDiff.Compare(dt1, dt2).AreSame);
         }
 
         [Fact]
         public void SimpleTableDiff()
         {
-            LightDataTable dt1 = new LightDataTable();
-            LightDataTable dt2 = new LightDataTable();
+            DataTableLite dt1 = new DataTableLite();
+            DataTableLite dt2 = new DataTableLite();
 
             dt1.Columns.Add("ID", typeof(int));
             dt2.Columns.Add("ID", typeof(int));
 
-            Assert.True(LightDataTableDiff.Compare(dt1, dt2).AreSame);
+            Assert.True(DataTableLiteDiff.Compare(dt1, dt2).AreSame);
         }
 
         [Fact]
         public void ColumnCountMismatchDiff()
         {
-            LightDataTable dt1 = new LightDataTable();
-            LightDataTable dt2 = new LightDataTable();
+            DataTableLite dt1 = new DataTableLite();
+            DataTableLite dt2 = new DataTableLite();
 
             dt1.Columns.Add("ID", typeof(int));
 
-            Assert.False(LightDataTableDiff.Compare(dt1, dt2).AreSame);
+            Assert.False(DataTableLiteDiff.Compare(dt1, dt2).AreSame);
         }
 
         [Fact]
         public void ColumnNameMismatchDiff()
         {
-            LightDataTable dt1 = new LightDataTable();
-            LightDataTable dt2 = new LightDataTable();
+            DataTableLite dt1 = new DataTableLite();
+            DataTableLite dt2 = new DataTableLite();
 
             dt1.Columns.Add("ID", typeof(int));
             dt2.Columns.Add("IDz", typeof(int));
 
-            DiffResult diff = LightDataTableDiff.Compare(dt1, dt2);
+            DiffResult diff = DataTableLiteDiff.Compare(dt1, dt2);
 
             Assert.False(diff.AreSame);
 
@@ -67,13 +67,13 @@ namespace Kirkin.Tests.Diff
         [Fact]
         public void ColumnDataTypeMismatchDiff()
         {
-            LightDataTable dt1 = new LightDataTable();
-            LightDataTable dt2 = new LightDataTable();
+            DataTableLite dt1 = new DataTableLite();
+            DataTableLite dt2 = new DataTableLite();
 
             dt1.Columns.Add("ID", typeof(int));
             dt2.Columns.Add("ID", typeof(string));
 
-            DiffResult diff = LightDataTableDiff.Compare(dt1, dt2);
+            DiffResult diff = DataTableLiteDiff.Compare(dt1, dt2);
 
             Assert.False(diff.AreSame);
 
@@ -83,8 +83,8 @@ namespace Kirkin.Tests.Diff
         [Fact]
         public void DataCompare()
         {
-            LightDataTable dt1 = new LightDataTable();
-            LightDataTable dt2 = new LightDataTable();
+            DataTableLite dt1 = new DataTableLite();
+            DataTableLite dt2 = new DataTableLite();
 
             dt1.Columns.Add("ID", typeof(int));
             dt2.Columns.Add("ID", typeof(int));
@@ -96,18 +96,18 @@ namespace Kirkin.Tests.Diff
             dt1.Rows.Add(2, "Moshi Moshi");
             dt2.Rows.Add(2, "Moshi Moshi");
 
-            Assert.True(LightDataTableDiff.Compare(dt1, dt2).AreSame);
+            Assert.True(DataTableLiteDiff.Compare(dt1, dt2).AreSame);
 
             dt1.Rows.Add(3, "Aloha");
 
-            DiffResult diff1 = LightDataTableDiff.Compare(dt1, dt2);
+            DiffResult diff1 = DataTableLiteDiff.Compare(dt1, dt2);
 
             Assert.False(diff1.AreSame);
             Assert.Equal("DataTable -> Row count: 3 | 2", diff1.ToString());
 
             dt2.Rows.Add(4, "Whaaaa");
 
-            DiffResult diff2 = LightDataTableDiff.Compare(dt1, dt2);
+            DiffResult diff2 = DataTableLiteDiff.Compare(dt1, dt2);
             string message = diff2.ToString();
 
             Assert.False(diff2.AreSame);
