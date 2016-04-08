@@ -145,6 +145,8 @@ namespace Kirkin.SqlDiff
                     MessageBoxButtons.OK,
                     diff.AreSame ? MessageBoxIcon.Information : MessageBoxIcon.Exclamation
                 );
+
+                new DetailedDiffView(ds1.Tables[0], ds2.Tables[0]).Show();
             }
             catch (OperationCanceledException)
             {

@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Kirkin.Diff.DiffResults
 {
-    internal static class DiffTextUtil
+    public static class DiffTextUtil
     {
         public static string ToString(object obj)
         {
