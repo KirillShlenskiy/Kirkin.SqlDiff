@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Kirkin.Data;
@@ -47,6 +48,23 @@ namespace Kirkin.Diff.Data
             }
 
             return new DiffResult(name, entries.ToArray());
+        }
+
+        private static DiffResult[] GetColumnDiffs(LightDataTable x, LightDataTable y, IEqualityComparer comparer)
+        {
+            throw new NotImplementedException();
+
+            List<DiffResult> entries = new List<DiffResult>();
+
+            for (int i = 0; i < Math.Max(x.Columns.Count, y.Columns.Count); i++)
+            {
+                LightDataColumn xCol = x.Columns.ElementAtOrDefault(i);
+                LightDataColumn yCol = x.Columns.ElementAtOrDefault(i);
+
+                if (xCol == null ^ yCol == null)
+                {
+                }
+            }
         }
 
         private static DiffResult[] GetColumnNameDiffs(LightDataTable x, LightDataTable y, IEqualityComparer comparer)
