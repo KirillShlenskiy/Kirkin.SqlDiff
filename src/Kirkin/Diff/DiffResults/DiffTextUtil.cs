@@ -17,8 +17,7 @@ namespace Kirkin.Diff.DiffResults
 
                 foreach (object item in (Array)obj)
                 {
-                    if (sb.Length > 1)
-                    {
+                    if (sb.Length > 1) {
                         sb.Append(", ");
                     }
 
