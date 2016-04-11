@@ -19,7 +19,7 @@ namespace Kirkin.Diff.Data
 
         protected internal override DiffResult Compare(string name, DataRowLite x, DataRowLite y, IEqualityComparer comparer)
         {
-            return new DiffResult(name, GetCellDiffs(x, y, comparer));
+            return new CompositeDiffResult(name, GetCellDiffs(x, y, comparer));
         }
 
         private static DiffResult[] GetCellDiffs(DataRowLite x, DataRowLite y, IEqualityComparer comparer)

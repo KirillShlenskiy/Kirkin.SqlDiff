@@ -30,7 +30,7 @@ namespace Kirkin.Diff.Data
         protected internal override DiffResult Compare(string name, DataTableLite x, DataTableLite y, IEqualityComparer comparer)
         {
             List<DiffResult> entries = new List<DiffResult>();
-            DiffResult columns = new DiffResult("Columns", GetColumnDiffs(x, y, comparer));
+            DiffResult columns = new CompositeDiffResult("Columns", GetColumnDiffs(x, y, comparer));
 
             entries.Add(columns);
 
@@ -39,10 +39,10 @@ namespace Kirkin.Diff.Data
             entries.Add(rowCount);
 
             if (columns.AreSame && rowCount.AreSame) {
-                entries.Add(new DiffResult("Rows", GetRowDiffs(x, y, comparer)));
+                entries.Add(new CompositeDiffResult("Rows", GetRowDiffs(x, y, comparer)));
             }
 
-            return new DiffResult(name, entries.ToArray());
+            return new CompositeDiffResult(name, entries.ToArray());
         }
 
         private static DiffResult[] GetColumnDiffs(DataTableLite x, DataTableLite y, IEqualityComparer comparer)

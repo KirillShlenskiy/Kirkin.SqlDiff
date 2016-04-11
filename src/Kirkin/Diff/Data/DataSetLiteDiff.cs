@@ -37,10 +37,10 @@ namespace Kirkin.Diff.Data
             entries.Add(tableCount);
 
             if (tableCount.AreSame) {
-                entries.Add(new DiffResult("Tables", GetTableDiffs(x, y, comparer)));
+                entries.Add(new CompositeDiffResult("Tables", GetTableDiffs(x, y, comparer)));
             }
 
-            return new DiffResult(name, entries.ToArray());
+            return new CompositeDiffResult(name, entries.ToArray());
         }
 
         private static DiffResult[] GetTableDiffs(DataSetLite x, DataSetLite y, IEqualityComparer comparer)

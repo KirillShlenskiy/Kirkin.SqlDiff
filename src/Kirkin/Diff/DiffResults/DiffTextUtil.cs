@@ -8,6 +8,7 @@ namespace Kirkin.Diff.DiffResults
         public static string ToString(object obj)
         {
             if (obj == null) return "NULL";
+            if (obj == DBNull.Value) return "NULL";
 
             if (obj is Array)
             {

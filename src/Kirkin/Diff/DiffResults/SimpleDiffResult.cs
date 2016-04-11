@@ -18,7 +18,7 @@ namespace Kirkin.Diff.DiffResults
         }
 
         internal SimpleDiffResult(string name, object x, object y, IEqualityComparer comparer)
-            : base(name, comparer.Equals(x, y))
+            : base(name, comparer.Equals(x, y), EmptyDiffResultArray)
         {
             X = x;
             Y = y;

@@ -48,6 +48,7 @@
     <Compile Include="Diff\Data\DataSetLiteDiff.cs" />
     <Compile Include="Diff\Data\DataTableLiteDiff.cs" />
     <Compile Include="Diff\DiffResult.cs" />
+    <Compile Include="Diff\DiffResults\CompositeDiffResult.cs" />
     <Compile Include="Diff\DiffResults\CustomDiffResult.cs" />
     <Compile Include="Diff\DiffResults\SimpleDiffResult.cs" />
     <Compile Include="Diff\DiffTextFormat.cs" />

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Text;
 
 namespace Kirkin.Diff
@@ -7,7 +6,7 @@ namespace Kirkin.Diff
     /// <summary>
     /// Represents the result of a diff operation.
     /// </summary>
-    public class DiffResult
+    public abstract class DiffResult
     {
         internal static readonly DiffResult[] EmptyDiffResultArray = new DiffResult[0];
 
@@ -16,6 +15,9 @@ namespace Kirkin.Diff
         /// </summary>
         public DiffResult[] Entries { get; }
 
+        /// <summary>
+        /// True if no differences are detected.
+        /// </summary>
         public bool AreSame { get; }
 
         /// <summary>
@@ -28,18 +30,11 @@ namespace Kirkin.Diff
         /// </summary>
         internal virtual string Message { get; }
 
-        public DiffResult(string name, bool areSame)
+        protected DiffResult(string name, bool areSame, DiffResult[] entries)
         {
             Name = name;
-            Entries = EmptyDiffResultArray;
             AreSame = areSame;
-        }
-
-        public DiffResult(string name, DiffResult[] entries)
-        {
-            Name = name;
             Entries = entries;
-            AreSame = Entries.Length == 0 || Entries.All(e => e.AreSame);
         }
 
         public override string ToString()
