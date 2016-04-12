@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -11,12 +8,11 @@ using System.Windows.Forms;
 using DiffPlex;
 using DiffPlex.DiffBuilder;
 using DiffPlex.DiffBuilder.Model;
-using DiffPlex.Model;
 
 using FastColoredTextBoxNS;
 
 using Kirkin.Data;
-using Kirkin.Diff.DiffResults;
+using Kirkin.Diff;
 
 namespace Kirkin.SqlDiff
 {

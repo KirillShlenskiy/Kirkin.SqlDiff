@@ -53,7 +53,7 @@
     <Compile Include="Diff\DiffResults\SimpleDiffResult.cs" />
     <Compile Include="Diff\DiffTextFormat.cs" />
     <Compile Include="Diff\DiffEngine.cs" />
-    <Compile Include="Diff\DiffResults\DiffTextUtil.cs" />
+    <Compile Include="Diff\DiffTextUtil.cs" />
     <Compile Include="Diff\PrimitiveEqualityComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
