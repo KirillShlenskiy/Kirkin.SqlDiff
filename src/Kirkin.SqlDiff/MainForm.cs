@@ -139,14 +139,18 @@ namespace Kirkin.SqlDiff
                 ExecuteButton.Enabled = true;
                 Text = DefaultText + ": done";
 
-                MessageBox.Show(
-                    resultText.ToString(),
-                    diff.AreSame ? "No diff" : "Changes detected",
-                    MessageBoxButtons.OK,
-                    diff.AreSame ? MessageBoxIcon.Information : MessageBoxIcon.Exclamation
-                );
+                if (diff.AreSame)
+                {
+                    MessageBox.Show(resultText.ToString(), "No diff", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    DialogResult dr = MessageBox.Show(resultText.ToString(), "Changes detected - view detailed diff?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
 
-                //new DetailedDiffView(ds1.Tables[0], ds2.Tables[0]).Show();
+                    if (dr == DialogResult.Yes) {
+                        new DetailedDiffView(ds1.Tables[0], ds2.Tables[0]).Show();
+                    }
+                }
             }
             catch (OperationCanceledException)
             {

@@ -55,7 +55,6 @@
             this.TextBox1.CharWidth = 8;
             this.TextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.TextBox1.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.TextBox1.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.TextBox1.IsReplaceMode = false;
             this.TextBox1.Location = new System.Drawing.Point(12, 12);
             this.TextBox1.Name = "TextBox1";
@@ -85,7 +84,6 @@
             this.TextBox2.CharWidth = 8;
             this.TextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.TextBox2.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.TextBox2.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.TextBox2.IsReplaceMode = false;
             this.TextBox2.Location = new System.Drawing.Point(514, 12);
             this.TextBox2.Name = "TextBox2";
@@ -103,8 +101,9 @@
             this.ClientSize = new System.Drawing.Size(1032, 735);
             this.Controls.Add(this.TextBox2);
             this.Controls.Add(this.TextBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DetailedDiffView";
-            this.Text = "DetailedDiffView";
+            this.Text = "Detailed Diff";
             this.Load += new System.EventHandler(this.DetailedDiffView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.TextBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox2)).EndInit();
