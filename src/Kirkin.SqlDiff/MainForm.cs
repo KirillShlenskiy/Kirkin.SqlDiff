@@ -148,7 +148,7 @@ namespace Kirkin.SqlDiff
                     DialogResult dr = MessageBox.Show(resultText.ToString(), "Changes detected - view detailed diff?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
 
                     if (dr == DialogResult.Yes) {
-                        new DetailedDiffView(ds1.Tables[0], ds2.Tables[0]).Show();
+                        new DetailedDiffView(ds1, ds2).Show();
                     }
                 }
             }

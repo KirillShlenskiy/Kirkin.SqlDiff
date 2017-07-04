@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,19 +13,20 @@ using DiffPlex.DiffBuilder.Model;
 using FastColoredTextBoxNS;
 
 using Kirkin.Data;
-using Kirkin.Diff;
+
+using Newtonsoft.Json;
 
 namespace Kirkin.SqlDiff
 {
     public partial class DetailedDiffView : Form
     {
-        private readonly DataTableLite LeftTable;
-        private readonly DataTableLite RightTable;
+        private readonly DataSetLite LeftDataSet;
+        private readonly DataSetLite RightDataSet;
 
-        public DetailedDiffView(DataTableLite leftTable, DataTableLite rightTable)
+        public DetailedDiffView(DataSetLite leftDataSet, DataSetLite rightDataSet)
         {
-            LeftTable = leftTable;
-            RightTable = rightTable;
+            LeftDataSet = leftDataSet;
+            RightDataSet = rightDataSet;
 
             InitializeComponent();
         }
@@ -73,8 +75,8 @@ namespace Kirkin.SqlDiff
 
         private void RenderDiff()
         {
-            string leftContents = DataDescription(LeftTable);
-            string rightContents = DataDescription(RightTable);
+            string leftContents = DataDescription(LeftDataSet);
+            string rightContents = DataDescription(RightDataSet);
 
             Differ engine = new Differ();
             SideBySideDiffBuilder diffBuilder = new SideBySideDiffBuilder(engine);
@@ -127,23 +129,17 @@ namespace Kirkin.SqlDiff
             }
         }
 
-        private static string DataDescription(DataTableLite table)
+        private static string DataDescription(DataSetLite dataSet)
         {
+            JsonSerializer serializer = new JsonSerializer();
+
+            serializer.Formatting = Formatting.Indented;
+            serializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
             StringBuilder sb = new StringBuilder();
-            StringBuilder line = new StringBuilder();
 
-            foreach (DataRowLite row in table.Rows)
-            {
-                line.Clear();
-
-                foreach (object value in row.ItemArray)
-                {
-                    if (line.Length != 0) line.Append(", ");
-
-                    line.Append(DiffTextUtil.ToString(value));
-                }
-
-                sb.AppendLine(line.ToString());
+            using (StringWriter writer = new StringWriter(sb)) {
+                serializer.Serialize(writer, dataSet);
             }
 
             return sb.ToString();
