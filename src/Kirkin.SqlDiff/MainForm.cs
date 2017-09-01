@@ -202,10 +202,10 @@ namespace Kirkin.SqlDiff
                 table.Columns.Add(reader.GetName(i), reader.GetFieldType(i));
             }
 
+            object[] itemArray = new object[reader.FieldCount];
+
             while (await reader.ReadAsync(ct).ConfigureAwait(false))
             {
-                object[] itemArray = new object[reader.FieldCount];
-
                 for (int i = 0; i < itemArray.Length; i++) {
                     itemArray[i] = reader[i];
                 }
