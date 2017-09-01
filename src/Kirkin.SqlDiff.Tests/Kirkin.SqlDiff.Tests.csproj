@@ -42,6 +42,9 @@
       <HintPath>..\packages\DiffPlex.1.2.1\lib\portable-net40+sl50+win+wpa81+wp80\DiffPlex.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Kirkin, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Kirkin.1.0.1\lib\net45\Kirkin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\packages\xunit.abstractions.2.0.0\lib\net35\xunit.abstractions.dll</HintPath>
@@ -78,9 +81,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Kirkin\Kirkin.csproj">
-      <Project>{b4bed42d-9ac1-4eef-adef-19ffccf8133b}</Project>
-      <Name>Kirkin</Name>
+    <ProjectReference Include="..\Kirkin.SqlDiff\Kirkin.SqlDiff.csproj">
+      <Project>{bc4fcc6f-259b-4d0a-be96-00810c8d8f82}</Project>
+      <Name>Kirkin.SqlDiff</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

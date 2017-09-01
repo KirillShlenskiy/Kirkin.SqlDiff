@@ -131,10 +131,10 @@ namespace Kirkin.SqlDiff
 
         private static string DataDescription(DataSetLite dataSet)
         {
-            JsonSerializer serializer = new JsonSerializer();
-
-            serializer.Formatting = Formatting.Indented;
-            serializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            JsonSerializer serializer = new JsonSerializer {
+                Formatting = Formatting.Indented,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
 
             StringBuilder sb = new StringBuilder();
 

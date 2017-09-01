@@ -52,6 +52,9 @@
     <Reference Include="FastColoredTextBox, Version=2.16.21.0, Culture=neutral, PublicKeyToken=fb8aa12b994ef61b, processorArchitecture=MSIL">
       <HintPath>..\packages\FCTB.2.16.21.0\lib\FastColoredTextBox.dll</HintPath>
     </Reference>
+    <Reference Include="Kirkin, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Kirkin.1.0.1\lib\net45\Kirkin.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -74,6 +77,17 @@
     <Compile Include="DetailedDiffView.Designer.cs">
       <DependentUpon>DetailedDiffView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Diff\Data\DataRowLiteDiff.cs" />
+    <Compile Include="Diff\Data\DataSetLiteDiff.cs" />
+    <Compile Include="Diff\Data\DataTableLiteDiff.cs" />
+    <Compile Include="Diff\DiffEngine.cs" />
+    <Compile Include="Diff\DiffResult.cs" />
+    <Compile Include="Diff\DiffResults\CompositeDiffResult.cs" />
+    <Compile Include="Diff\DiffResults\CustomDiffResult.cs" />
+    <Compile Include="Diff\DiffResults\SimpleDiffResult.cs" />
+    <Compile Include="Diff\DiffTextFormat.cs" />
+    <Compile Include="Diff\DiffTextUtil.cs" />
+    <Compile Include="Diff\PrimitiveEqualityComparer.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,12 +129,6 @@
   <ItemGroup>
     <Content Include="diff-icon.ico" />
     <None Include="FodyWeavers.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Kirkin\Kirkin.csproj">
-      <Project>{b4bed42d-9ac1-4eef-adef-19ffccf8133b}</Project>
-      <Name>Kirkin</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target AfterTargets="AfterBuild;NonWinFodyTarget" Condition="'$(Configuration)' == 'Release'" Name="CleanReferenceCopyLocalPaths">

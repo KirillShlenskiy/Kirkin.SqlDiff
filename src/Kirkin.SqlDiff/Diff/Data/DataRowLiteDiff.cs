@@ -26,17 +26,13 @@ namespace Kirkin.Diff.Data
         {
             List<DiffResult> entries = null;
 
-            // Perf: avoid new array allocation on every ItemArray getter call.
-            object[] xItemArray = x.ItemArray;
-            object[] yItemArray = y.ItemArray;
-
-            for (int i = 0; i < xItemArray.Length; i++)
+            for (int i = 0; i < x.Table.Columns.Count; i++)
             {
-                if (!comparer.Equals(xItemArray[i], yItemArray[i]))
+                if (!comparer.Equals(x[i], y[i]))
                 {
                     if (entries == null) entries = new List<DiffResult>();
 
-                    entries.Add(new SimpleDiffResult(x.Table.Columns[i].ColumnName, xItemArray[i], yItemArray[i], comparer));
+                    entries.Add(new SimpleDiffResult(x.Table.Columns[i].ColumnName, x[i], y[i], comparer));
                 }
             }
 
